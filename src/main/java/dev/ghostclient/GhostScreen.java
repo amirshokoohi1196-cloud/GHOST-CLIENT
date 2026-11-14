@@ -6,6 +6,11 @@ import net.minecraft.client.gui.widget.ButtonWidget;
 import net.minecraft.text.Text;
 
 public final class GhostScreen extends Screen {
+    private static final int PANEL = 0xE8101010;
+    private static final int PANEL_EDGE = 0xFF777777;
+    private static final int PRIMARY = 0xFFF2F2F2;
+    private static final int MUTED = 0xFFB8B8B8;
+
     public GhostScreen() { super(Text.literal("GHOST CLIENT")); }
 
     private static Text fa(String value) {
@@ -19,26 +24,41 @@ public final class GhostScreen extends Screen {
     @Override
     protected void init() {
         int cx = width / 2, cy = height / 2;
+
         addDrawableChild(ButtonWidget.builder(hudLabel(), button -> {
             GhostClient.hudEnabled = !GhostClient.hudEnabled;
             button.setMessage(hudLabel());
-        }).dimensions(cx - 90, cy - 8, 180, 20).build());
+        }).dimensions(cx - 88, cy - 5, 176, 20).build());
 
-        addDrawableChild(ButtonWidget.builder(fa("بستن"),
-                button -> close()).dimensions(cx - 90, cy + 20, 180, 20).build());
+        addDrawableChild(ButtonWidget.builder(fa("بستن"), button -> close())
+                .dimensions(cx - 88, cy + 22, 176, 20).build());
     }
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         renderBackground(context, mouseX, mouseY, delta);
-        int l = width / 2 - 115, t = height / 2 - 65;
-        context.fill(l, t, l + 230, t + 125, 0xE8171022);
-        context.fill(l, t, l + 230, t + 2, 0xFFBD83FF);
+
+        int left = width / 2 - 112;
+        int top = height / 2 - 66;
+        int right = left + 224;
+        int bottom = top + 128;
+
+        // تم سیاه‌وسفید با ظاهر ساده و بدون انیمیشن‌های تزئینی
+        context.fill(left, top, right, bottom, PANEL);
+        context.fill(left, top, right, top + 1, PANEL_EDGE);
+        context.fill(left, bottom - 1, right, bottom, PANEL_EDGE);
+        context.fill(left, top, left + 1, bottom, PANEL_EDGE);
+        context.fill(right - 1, top, right, bottom, PANEL_EDGE);
+
         context.drawCenteredTextWithShadow(textRenderer, "GHOST CLIENT",
-                width / 2, t + 12, 0xFFBD83FF);
+                width / 2, top + 11, PRIMARY);
         context.drawCenteredTextWithShadow(textRenderer,
-                GhostText.rtl("کلاینت سبک فارسی | نسخه ۰.۱.۲"),
-                width / 2, t + 30, 0xFFF4EDFF);
+                GhostText.rtl("تم: سیاه‌وسفید  |  انیمیشن: حداقلی"),
+                width / 2, top + 29, MUTED);
+        context.drawCenteredTextWithShadow(textRenderer,
+                GhostText.rtl("تنظیمات کلاینت"),
+                width / 2, top + 49, PRIMARY);
+
         super.render(context, mouseX, mouseY, delta);
     }
 
