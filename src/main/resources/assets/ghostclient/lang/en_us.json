@@ -1,5 +1,7 @@
 {
   "key.ghostclient.menu": "Open GHOST CLIENT menu",
   "key.ghostclient.hud": "Toggle GHOST CLIENT HUD",
+  "key.ghostclient.esp": "Toggle Entity ESP",
+  "key.ghostclient.block_esp": "Toggle Block ESP",
   "category.ghostclient.main": "GHOST CLIENT"
 }
