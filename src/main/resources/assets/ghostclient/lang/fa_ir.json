@@ -1,5 +1,7 @@
 {
   "key.ghostclient.menu": "باز کردن منوی گوست کلاینت",
   "key.ghostclient.hud": "روشن یا خاموش کردن HUD",
+  "key.ghostclient.esp": "روشن یا خاموش کردن ESP",
+  "key.ghostclient.block_esp": "روشن یا خاموش کردن ESP بلوک",
   "category.ghostclient.main": "گوست کلاینت"
 }
