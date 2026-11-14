@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "ghostclient",
+  "version": "${version}",
+  "name": "GHOST CLIENT",
+  "description": "Persian client-side HUD and customization utilities.",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["dev.ghostclient.GhostClient"]
+  },
+  "depends": {
+    "fabricloader": ">=0.16.10",
+    "minecraft": "1.21.4",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}
